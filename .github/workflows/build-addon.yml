@@ -5,9 +5,11 @@ on:
   push:
     branches:
       - master
+      - xodi-binary-api
   pull_request:
     branches:
       - master
+      - xodi-binary-api
 
 jobs:
   build:
@@ -15,8 +17,10 @@ jobs:
       - self-hosted
 
     steps:
-      - name: Checkout master branch
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Build addon
         shell: cmd

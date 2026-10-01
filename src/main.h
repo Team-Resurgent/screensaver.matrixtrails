@@ -14,7 +14,12 @@
 
 #include <xtl.h>
 
+// The production addon builds from src/, where "lib/xbox_dx8.lib" resolves. The
+// standalone test runner builds from test/ and links the lib explicitly instead,
+// so it defines MATRIXTRAILS_NO_DX8_LIB_PRAGMA to opt out of this path-relative pragma.
+#ifndef MATRIXTRAILS_NO_DX8_LIB_PRAGMA
 #pragma comment (lib, "lib/xbox_dx8.lib" )
+#endif
 
 extern "C" void d3dGetRenderState(DWORD dwY, DWORD* dwZ);
 extern "C" void d3dSetRenderState(DWORD dwY, DWORD dwZ);
